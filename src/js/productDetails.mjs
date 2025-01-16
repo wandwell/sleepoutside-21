@@ -15,10 +15,6 @@ export default class ProductDetails {
         //generate and render product details
         this.renderProductDetails();
 
-        // event handler for add to cart button
-        document.getElementById('addToCart')
-        .addEventListener('click', this.addToCart.bind(this)); 
-        
     
         //click button to add items to cart function
         addProductToCart() {
@@ -35,9 +31,22 @@ export default class ProductDetails {
             // Provide feedback to the user
             //alert(`${this.product.name} has been added to your cart.`);
         }
+
+        // event handler for add to cart button
+        document.getElementById('addToCart')
+        .addEventListener('click', this.addToCart.bind(this)); 
+                
+        
         //generate the HTML to display our product
         renderProductDetails(this.productId){
-            
+            this.product,${name}= 
+
+
+
+
+
+
+
         }
     }
 }
