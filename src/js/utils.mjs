@@ -22,6 +22,12 @@ export function setClick(selector, callback) {
   qs(selector).addEventListener("click", callback);
 }
 
+// Function to get a parameter from the URL
+export function getParams(param) {
+  const urlParams = new URLSearchParams(window.location.search);
+  return urlParams.get(param); // Returns the value of the specified parameter
+}
+
 export function renderListWithTemplate(
   templateFn, 
   parentElement, 
