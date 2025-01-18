@@ -35,6 +35,7 @@ export default class ProductDetails {
         this.renderProductDetails("main");
 
          // event handler for add to cart button
+
          document
          .getElementById('addToCart')
          .addEventListener('click', this.addToCart.bind(this))
@@ -53,7 +54,7 @@ export default class ProductDetails {
         //save the updated cart items array into LocalStorage
         setLocalStorage('so-cart', cartItems);
         // Provide feedback to the user
-        //alert(`${this.product.name} has been added to your cart.`);
+        alert(`${this.product.NameWithoutBrand} has been added to your cart.`);
     };
 
     //generate the HTML to display our product
