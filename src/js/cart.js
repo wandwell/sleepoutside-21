@@ -4,6 +4,24 @@ function renderCartContents() {
   const cartItems = getLocalStorage('so-cart');
   const htmlItems = cartItems.map((item) => cartItemTemplate(item));
   document.querySelector('.product-list').innerHTML = htmlItems.join('');
+
+  // Assuming you have the element saved in a variable
+  const cartFooter = document.querySelector('.cart-footer');
+
+  // Calculate the total price
+  const totalPrice = calculateTotalPrice(cartItems);
+
+  // Update the cart total
+  const cartTotalElement = document.querySelector('.cart-total');
+  cartTotalElement.textContent = `Total: $${totalPrice.toFixed(2)}`;
+
+  // To show the footer, remove the 'hide' class
+  cartFooter.classList.remove('hide');
+}
+
+// Function to calculate the total price of items in the cart
+function calculateTotalPrice(cartItems) {
+  return cartItems.reduce((total, item) => total + item.FinalPrice, 0);
 }
 
 function cartItemTemplate(item) {
@@ -26,3 +44,9 @@ function cartItemTemplate(item) {
 }
 
 renderCartContents();
+
+// Clear cart
+document.getElementById('clearCartButton').addEventListener('click', function() {
+  localStorage.removeItem('so-cart');  
+  window.location.reload(); 
+});
