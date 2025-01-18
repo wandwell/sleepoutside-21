@@ -35,12 +35,13 @@ export default class ProductDetails {
         this.renderProductDetails("main");
 
          // event handler for add to cart button
-         document.getElementById('addProductToCart')
+         document
+         .getElementById('addToCart')
          .addEventListener('click', this.addToCart.bind(this))
     };
     
         //click button to add items to cart function
-    addProductToCart() {
+    addToCart() {
         //retrieve current cart items
         let cartItems = getLocalStorage('so-cart');
         //create an array to hold cart items
