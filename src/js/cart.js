@@ -22,7 +22,7 @@ function renderCartContents() {
   document.querySelectorAll('.removeFromCart').forEach(element => {
     element.addEventListener('click', (event) => {
       const itemId = event.target.getAttribute('data-id');
-      removeFromCart(itemId)
+      removeFromCart(itemId);
     });
   });
 }
@@ -30,7 +30,7 @@ function renderCartContents() {
 // Function to calculate the total price of items in the cart
 function calculateTotalPrice(cartItems) {
   return cartItems.reduce((total, item) => total + item.FinalPrice, 0);
-
+};
 //function to remove items from cart
 function removeFromCart(itemId) {
   const cartItems = getLocalStorage('so-cart');
@@ -45,7 +45,7 @@ function removeFromCart(itemId) {
 }
 
 function cartItemTemplate(item) {
-  const newItem = `<li class='cart-card divider'>
+  return `<li class='cart-card divider'>
   <a href='#' class='cart-card__image'>
     <img
       src='${item.Image}'
@@ -60,10 +60,8 @@ function cartItemTemplate(item) {
     <p class='cart-card__quantity'>qty: 1<span class='removeFromCart' data-id='${item.Id}'>❌<span></p>
   </div>
   <p class='cart-card__price'>$${item.FinalPrice}</p>
-</li>`;
-
-  return newItem;
-}
+  </li>`;
+};
 
 renderCartContents();
 
@@ -72,4 +70,3 @@ document.getElementById('clearCartButton').addEventListener('click', function() 
   localStorage.removeItem('so-cart');  
   window.location.reload(); 
 });
-
