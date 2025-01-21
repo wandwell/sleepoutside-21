@@ -2,10 +2,14 @@ import { getLocalStorage, setLocalStorage } from './utils.mjs';
 
 function renderCartContents() {
   const cartItems = getLocalStorage('so-cart');
-  if (cartItems != null) {
+  
+  if (cartItems !== null) {
     const htmlItems = cartItems.map((item) => cartItemTemplate(item));
     document.querySelector('.product-list').innerHTML = htmlItems.join('');
   }
+
+  const htmlItems = cartItems.map((item) => cartItemTemplate(item));
+  document.querySelector('.product-list').innerHTML = htmlItems.join('');
 
   //display superscript numbers to the backpack icon
   const cartCount = itemsTotalQuantity(cartItems);
