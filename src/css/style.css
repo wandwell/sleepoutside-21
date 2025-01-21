@@ -110,6 +110,21 @@ button {
   fill: gray;
 }
 
+.cart-count {
+  position: absolute;
+  top: 0;
+  right: -15px;
+  color:var(--secondary-color);
+  font-size: 12px;
+  font-weight: bold;
+  border-radius: 50%;
+  padding: 2px 6px;
+  line-height: 1;
+  display: inline; /* Ensure the badge is visible */
+}
+.removeFromCart {
+  cursor: pointer;
+}
 /* End cart icon styles */
 
 .mission {
