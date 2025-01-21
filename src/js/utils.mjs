@@ -29,15 +29,15 @@ export function getParams(param) {
 }
 
 export function renderListWithTemplate(
-  templateFn, 
+  templateFunction, 
   parentElement, 
   list, 
   position = "afterbegin", 
   clear = "false"
 ) {
-    const htmlStrings = list.map(templateFn);
+    const htmlStringList = list.map(templateFunction);
     if (clear = "true") {
       parentElement.innerHTML = "";
     }
-    parentElement.insertAdjacentHTML(position, htmlStrings.join(''));
+    parentElement.insertAdjacentHTML(position, htmlStringList.join(''));// no separator between closing </li> and opening <li>
 }
