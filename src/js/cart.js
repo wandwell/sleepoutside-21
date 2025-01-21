@@ -41,8 +41,15 @@ function calculateTotalPrice(cartItems) {
 }
 
 //funciton to count the total quantity of all items in cart
-function itemsTotalQuantity(cartItems) {
-  return cartItems.reduce((total, item) => total + item.quantity, 0); 
+function itemsTotalQuantity() {
+  const cartItems = getLocalStorage('so-cart');
+  let totalQuantity = 0;
+  const itemCount = cartItems.reduce((accumulator, item) => {
+    accumulator[item.Id] = (accumulator[item.Id] || 0) + 1; 
+    totalQuantity ++;
+    return accumulator;
+  }, {});
+  return totalQuantity;
 }
 
 //function to add a superscript number to the backpack icon
@@ -98,7 +105,7 @@ function cartItemTemplate(item) {
   </a>
   <p class='cart-card__color'>${item.Colors[0].ColorName}</p>
   <div>
-    <p class='cart-card__quantity'>qty: 1<span class='removeFromCart' data-id='${item.Id}'>❌<span></p>
+    <p class='cart-card__quantity'>qty: 1 <span class='removeFromCart' data-id='${item.Id}'>❌<span></p>
   </div>
   <p class='cart-card__price'>$${item.FinalPrice}</p>
   </li>`;
@@ -107,7 +114,7 @@ function cartItemTemplate(item) {
 renderCartContents();
 // Clear cart
 document.getElementById('clearCartButton').addEventListener('click', function() {
-  localStorage.removeItem('so-cart');  
-  window.location.reload(); 
+  setLocalStorage('so-cart', []);
+  renderCartContents();
   updateCartCount(0);
 });
