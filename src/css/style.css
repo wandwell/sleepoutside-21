@@ -110,6 +110,21 @@ button {
   fill: gray;
 }
 
+.cart-count {
+  position: absolute;
+  top: 0;
+  right: -15px;
+  color:var(--secondary-color);
+  font-size: 12px;
+  font-weight: bold;
+  border-radius: 50%;
+  padding: 2px 6px;
+  line-height: 1;
+  display: inline; /* Ensure the badge is visible */
+}
+.removeFromCart {
+  cursor: pointer;
+}
 /* End cart icon styles */
 
 .mission {
@@ -200,6 +215,26 @@ button {
 .cart-card__price {
   grid-row: 2;
   grid-column: 3;
+}
+
+/* Initially hide the cart footer */
+.hide {
+  display: none;
+}
+
+/* Style the cart footer */
+.cart-footer {
+  padding: 20px;
+  background-color: #f1f1f1; /* Light gray background */
+  border-top: 1px solid #ddd; /* Border separating it from cart items */
+  text-align: center; /* Center the text */
+}
+
+/* Style the total price text */
+.cart-total {
+  font-size: 18px;
+  font-weight: bold;
+  color: #333; /* Dark text color */
 }
 
 @media screen and (min-width: 500px) {
