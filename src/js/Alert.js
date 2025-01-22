@@ -18,7 +18,7 @@ export default class Alert {
   }
 
   renderAlerts(alerts) {
-    console.log(alerts);
+    // console.log(alerts);
     if (alerts.length === 0) return;
 
     const alertSection = document.createElement("section");
