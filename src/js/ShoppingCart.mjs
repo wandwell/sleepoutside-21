@@ -1,4 +1,4 @@
-import { getLocalStorage } from "./utils.mjs";
+import { getLocalStorage, setLocalStorage } from "./utils.mjs";
 
 function cartItemTemplate(item) {
 return `<li class='cart-card divider'>
@@ -13,7 +13,7 @@ return `<li class='cart-card divider'>
 </a>
 <p class='cart-card__color'>${item.Colors[0].ColorName}</p>
 <div>
-    <p class='cart-card__quantity'>qty: 1 <span class='removeFromCart' data-id='${item.Id}'>❌<span></p>
+    <p class='cart-card__quantity'>qty: ${item.Quantity} <span class='removeFromCart' data-id='${item.Id}'>❌<span></p>
 </div>
 <p class='cart-card__price'>$${item.FinalPrice}</p>
 </li>`;
@@ -56,22 +56,12 @@ export default class ShoppingCart{
         
         // Update the cart total
         const cartTotalElement = document.querySelector('.cart-total');
-        cartTotalElement.textContent = `Total: $${totalPrice.toFixed(2)}`;
-        
-        
-        //To add eventlistener to removeFromCart
-        document.querySelectorAll('.removeFromCart').forEach(element => {
-            element.addEventListener('click', (event) => {
-            const itemId = event.target.getAttribute('data-id');
-            removeFromCart(itemId);
-            });
-        });
-    
+        cartTotalElement.textContent = `Total: $${totalPrice.toFixed(2)}`;  
     }
     
     // to remove items from cart
     removeFromCart(itemId) {
-        cartItems = getLocalStorage(this.key);
+        const cartItems = getLocalStorage(this.key);
     
         let itemRemoved = false; //only remove the first occurance of multiple items with same product Id
     
@@ -84,7 +74,6 @@ export default class ShoppingCart{
         return true;//true means item.Id != itemId && not removed yet so can be kept in cart
         
         });
-        setLocalStorage(this.key, newCartList);
-        renderCartContents();  
+        setLocalStorage(this.key, newCartList);  
     }
 }
