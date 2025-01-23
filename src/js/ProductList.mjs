@@ -4,7 +4,7 @@ function productCardTemplate(product) {
     return `<li class="product-card">
     <a href="../product_pages/index.html?product=${product.Id}">
         <img
-        src="${product.Image}"
+        src="${product.Images.PrimaryMedium}"
         alt="Image of ${product.Name}"
         />
         <h3 class="card__brand">${product.Brand.Name}</h3>
@@ -13,6 +13,19 @@ function productCardTemplate(product) {
     </a>
     </li>`;
 };
+
+function loadTitle(category){
+    let titleElement = document.querySelector('.category-title');
+    let titleString = "";
+    if (category == 'sleeping-bags'){
+        let strings = category.split("-");
+        strings = strings.map((string) => string.charAt(0).toUpperCase() + string.slice(1));
+        titleString = strings.join(" ");
+    }else{
+        titleString = category.charAt(0).toUpperCase() + category.slice(1);
+    };
+    titleElement.textContent = titleString;
+}
 
 export default class ProductListing {
     constructor(category, datasource, listElement){
@@ -25,6 +38,7 @@ export default class ProductListing {
         const list = await this.datasource.getData(this.category);
         let finalList = this.filterList(list);
         this.renderList(finalList);
+        loadTitle(this.category);
     }
 
     renderList(list) {
