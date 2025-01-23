@@ -48,9 +48,22 @@ export default class ProductDetails {
     if (!Array.isArray(cartItems)) {
       cartItems = [];
     }
+
+    //check for duplicates
+    let productExists = false;
+
+    cartItems.forEach(item => {
+      if(item.Id == this.product.Id){
+        productExists = true;
+        item.Quantity ++;
+      }
+    });
+    if (productExists == false){
     //add current product to cart
-    cartItems.push(this.product);
+      this.product.Quantity = 1;
+      cartItems.push(this.product);
     //save the updated cart items array into LocalStorage
+    };
     setLocalStorage("so-cart", cartItems);
     // Provide feedback to the user
     //alert(`${this.product.name} has been added to your cart.`);
