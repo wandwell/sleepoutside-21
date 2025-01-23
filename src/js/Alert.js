@@ -4,7 +4,7 @@ export default class Alert {
   }
   async loadAlerts() {
     try {
-      const response = await fetch("/json/alert.json");
+      const response = await fetch('/json/alert.json');
 
       if (!response.ok)
         throw new Error(`Failed to load alerts. Status: ${response.status}`);
@@ -13,28 +13,28 @@ export default class Alert {
 
       this.renderAlerts(alerts);
     } catch (error) {
-      console.error("Error loading alerts:", error);
+      console.error('Error loading alerts:', error);
     }
   }
 
   renderAlerts(alerts) {
-    console.log(alerts);
+    // console.log(alerts);
     if (alerts.length === 0) return;
 
-    const alertSection = document.createElement("section");
-    alertSection.classList.add("alert-list");
+    const alertSection = document.createElement('section');
+    alertSection.classList.add('alert-list');
 
     alerts.forEach((alert) => {
-      const alertElement = document.createElement("p");
+      const alertElement = document.createElement('p');
       alertElement.textContent = alert.message;
       alertElement.style.backgroundColor = alert.background;
       alertElement.style.color = alert.color;
-      alertElement.style.padding = "10px";
-      alertElement.style.margin = "5px 0";
+      alertElement.style.padding = '10px';
+      alertElement.style.margin = '5px 0';
       alertSection.appendChild(alertElement);
     });
 
-    const mainElement = document.querySelector("main");
+    const mainElement = document.querySelector('main');
     if (mainElement) {
       mainElement.prepend(alertSection);
     }
