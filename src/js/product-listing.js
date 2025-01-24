@@ -1,16 +1,21 @@
 import ProductData from "./ProductData.mjs";
 import ProductListing from "./ProductList.mjs";
+import { loadHeaderFooter, getParams } from "./utils.mjs";
 
 export async function renderProductList(category, parentSelector) {
   const dataSource = new ProductData(category);
   const parentElement = document.querySelector(parentSelector);
   const productList = new ProductListing(category, dataSource, parentElement);
 
-  await productList.init();
+  try {
+    await productList.init();
+  } catch (err) {
+    console.error("Error loading product list:", err);
+  }
 }
+
 function getCategoryFromURL() {
-  const params = new URLSearchParams(window.location.search);
-  return params.get("category") || "tents";
+  return getParams("category") || "tents";
 }
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -29,4 +34,3 @@ function loadProductList(category) {
     console.error("Error loading product list:", err),
   );
 }
-
