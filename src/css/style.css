@@ -30,6 +30,12 @@ header {
   justify-content: space-between;
   padding: 0 10px;
 }
+
+a {
+  text-decoration: none;
+  color: var(--font-body);
+}
+
 .logo {
   line-height: 60px;
   width: 245px;
@@ -43,10 +49,7 @@ header {
   width: 60px;
   height: 60px;
 }
-.logo a {
-  text-decoration: none;
-  color: var(--font-body);
-}
+
 .hero {
   position: relative;
 }
@@ -114,7 +117,7 @@ button {
   position: absolute;
   top: 0;
   right: -15px;
-  color:var(--secondary-color);
+  color: var(--secondary-color);
   font-size: 12px;
   font-weight: bold;
   border-radius: 50%;
@@ -237,6 +240,33 @@ button {
   color: #333; /* Dark text color */
 }
 
+/* Category Section */
+.category-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  max-width: 800px;
+  margin: 40px auto;
+}
+
+.category-box {
+  border: 2px solid #ddd;
+  border-radius: 10px;
+  padding: 20px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  text-align: center;
+}
+
+.category-box img {
+  width: 100px;
+  height: auto;
+}
+
+.category-box:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
 @media screen and (min-width: 500px) {
   body {
     max-width: 1080px;
