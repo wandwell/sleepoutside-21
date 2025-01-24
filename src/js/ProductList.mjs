@@ -4,9 +4,13 @@ function productCardTemplate(product) {
   return `<li class="product-card">
     <a href="/product_pages/index.html?product=${product.Id}">
         <img
-        class="product-card__image"
-        src="${product.Images.PrimaryMedium}"
-        alt="Image of ${product.Name}"
+          class="product-card__image"
+          src="${product.Images.PrimaryMedium}" 
+          srcset="${product.Images.PrimarySmall} 480w, 
+                  ${product.Images.PrimaryMedium} 768w, 
+                  ${product.Images.PrimaryLarge} 1200w"
+          sizes="100vw"
+          alt="Image of ${product.Name}"
         />
         <h3 class="card__brand">${product.Brand.Name}</h3>
         <h2 class="card__name">${product.Name}</h2>
@@ -14,7 +18,6 @@ function productCardTemplate(product) {
     </a>
     </li>`;
 }
-
 
 export default class ProductListing {
   constructor(category, datasource, listElement) {

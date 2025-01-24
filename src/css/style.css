@@ -157,7 +157,8 @@ button {
   margin: 0.25em;
   padding: 0.5em;
   border: 1px solid var(--light-grey);
-  max-width: 250px;
+  width: 100%;
+  max-width: 300px;
 }
 .product-card h2,
 .product-card h3,
@@ -274,6 +275,19 @@ button {
   transform: translateY(-5px);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
+
+/* @media (max-width: 768px) {
+  .product-card img {
+    max-width: 200px;
+  }
+}
+
+@media (max-width: 480px) {
+  .product-card img {
+    max-width: 100px;
+  }
+} */
+
 @media screen and (min-width: 500px) {
   body {
     max-width: 1080px;
@@ -286,9 +300,8 @@ button {
     font-size: inherit;
     grid-template-columns: 150px auto 15%;
   }
-}
-
-footer {
-  font-size: var(--small-font);
-  padding: 1em;
+  footer {
+    font-size: var(--small-font);
+    padding: 1em;
+  }
 }
