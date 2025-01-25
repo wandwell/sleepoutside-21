@@ -25,6 +25,9 @@ export default class ProductListing {
         const list = await this.datasource.getData(this.category);
         let finalList = this.filterList(list);
         this.renderList(finalList);
+
+        const sortOptions = document.getElementById('sortOptions');
+        sortOptions.addEventListener('change', this.handleSortChange.bind(this));
     }
 
     renderList(list) {
@@ -39,6 +42,24 @@ export default class ProductListing {
             };
         });
         return finalList;
+    }
+
+    sortList(list, sortBy) {
+        return list.sort((a, b) => {
+            if (sortBy === 'name') {
+                return a.Name.localeCompare(b.Name); // Sort alphabetically by name
+            } else if (sortBy === 'price') {
+                return a.FinalPrice - b.FinalPrice; // Sort numerically by price
+            }
+            return 0; // Default no sorting
+        });
+    }
+
+    // Method to handle sorting when user selects a criterion
+    handleSortChange(event) {
+        const sortBy = event.target.value;
+        const sortedList = this.sortList(this.datasource.getData(this.category), sortBy);
+        this.renderList(sortedList);
     }
 };
 
