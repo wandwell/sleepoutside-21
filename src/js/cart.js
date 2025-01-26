@@ -11,6 +11,15 @@ const cart = new ShoppingCart('so-cart', '.product-list');
 
 cart.renderCartContents();
 
+//To add eventlistener to removeFromCart
+document.querySelectorAll('.removeFromCart').forEach(element => {
+  element.addEventListener('click', (event) => {
+    const itemId = event.target.getAttribute('data-id');
+    cart.removeFromCart(itemId);
+    cart.renderCartContents();
+  });
+});
+
 // Clear cart
 document
   .getElementById('clearCartButton')
