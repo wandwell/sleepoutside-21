@@ -1,7 +1,4 @@
-import {
-  getParams,
-  loadHeaderFooter,
-} from './utils.mjs';
+import {getParams,loadHeaderFooter,displayCartCount} from './utils.mjs';
 import ProductData from './ProductData.mjs';
 import ProductDetails from './productDetails.mjs';
 
@@ -12,3 +9,7 @@ const product = new ProductDetails(productId, dataSource);
 
 product.init();
 loadHeaderFooter();
+document.addEventListener('DOMContentLoaded', () => {
+  displayCartCount(); // Initialize the cart count on page load
+});
+

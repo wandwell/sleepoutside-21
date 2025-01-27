@@ -1,4 +1,4 @@
-import { getLocalStorage, setLocalStorage } from "./utils.mjs";
+import { getLocalStorage, setLocalStorage} from "./utils.mjs";
 
 //create template for html
 function productDetailsTemplate(product) {
@@ -65,8 +65,9 @@ export default class ProductDetails {
     //save the updated cart items array into LocalStorage
     };
     setLocalStorage("so-cart", cartItems);
-    // Provide feedback to the user
-    //alert(`${this.product.name} has been added to your cart.`);
+    // Dispatch an event to notify cart changes
+    const event = new Event('cartUpdated');
+    window.dispatchEvent(event);
   }
 
   //generate the HTML to display our product
@@ -77,4 +78,5 @@ export default class ProductDetails {
       productDetailsTemplate(this.product),
     );
   }
+
 }

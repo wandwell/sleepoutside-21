@@ -1,6 +1,6 @@
 //import ProductData from './ProductData.mjs';
 //import ProductListing from './ProductList.mjs';
-import { loadHeaderFooter } from './utils.mjs';
+import { loadHeaderFooter, displayCartCount } from './utils.mjs';
 
 //const dataSource = new ProductData('tents');
 //const parentElement = document.querySelector('.product-list');
@@ -9,3 +9,7 @@ import { loadHeaderFooter } from './utils.mjs';
 //productList.init();
 
 loadHeaderFooter();
+//display cart items quantity
+document.addEventListener('DOMContentLoaded', () => {
+    displayCartCount(); // Initialize the cart count on page load
+  });

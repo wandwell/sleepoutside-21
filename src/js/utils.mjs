@@ -1,9 +1,8 @@
-// wrapper for querySelector...returns matching element
 export function qs(selector, parent = document) {
   return parent.querySelector(selector);
 }
-// or a more concise version if you are into that sort of thing:
-// export const qs = (selector, parent = document) => parent.querySelector(selector);
+// or export const qs = (selector, parent = document) => parent.querySelector(selector);
+
 
 // retrieve data from localstorage
 export function getLocalStorage(key) {
@@ -84,34 +83,27 @@ export async function loadHeaderFooter() {
  export function displayCartCount() {
   const cartCount = itemsTotalQuantity();
   updateCartCount(cartCount);
+  //Add an observer to listen for cart changes
+  window.addEventListener('cartUpdated', () => {
+    const updatedCount = itemsTotalQuantity();
+    updateCartCount(updatedCount);
+  });
  }
 
  function itemsTotalQuantity() {
-   const cartItems = getLocalStorage('so-cart');
-   let totalQuantity = 0;
-   const itemCount = cartItems.reduce((accumulator, item) => {
-     accumulator[item.Id] = (accumulator[item.Id] || 0) + 1; 
-     totalQuantity ++;
-     return accumulator;
-   }, {});
+   let cartItems = getLocalStorage('so-cart');
+   const totalQuantity = cartItems.reduce((sum, item) => sum + (item.Quantity || 1), 0);
    return totalQuantity;
  }
  
  //function to add a superscript number to the backpack icon
  function updateCartCount(count) {
    // Select the cart element
-   const cartElement = document.querySelector('.cart');
- 
-   // Check if a badge already exists
-   // badge = cartElement.querySelector('.cart-count');
-  // if (!badge) {
-     // Create a badge if it doesn't exist
+    const cartElement = document.querySelector('.cart');
     let badge = document.createElement('span');
      badge.classList.add('cart-count');
      cartElement.appendChild(badge);
-  // }
- 
-   // Update the badge text with the count
-   badge.textContent = count;
+    // Update the badge text with the count
+    badge.textContent = count;
  }
  

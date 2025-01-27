@@ -13,7 +13,7 @@ return `<li class='cart-card divider'>
 </a>
 <p class='cart-card__color'>${item.Colors[0].ColorName}</p>
 <div>
-    <p class='cart-card__quantity'>qty: ${item.Quantity} <span class='removeFromCart' data-id='${item.Id}'>❌<span></p>
+    <p class='cart-card__quantity'>qty: ${item.Quantity} <span class='removeFromCart' data-id='${item.Id}'>❌</span></p>
 </div>
 <p class='cart-card__price'>$${item.FinalPrice}</p>
 </li>`;
@@ -28,7 +28,7 @@ function calculateTotalPrice(cartItems, selector) {
         const htmlItems = cartItems.map((item) => cartItemTemplate(item));
         document.querySelector(selector).innerHTML = htmlItems.join('');
     }
-    return cartItems.reduce((total, item) => total + item.FinalPrice, 0);
+    return cartItems.reduce((total, item) => total + item.FinalPrice * item.Quantity, 0);
 }
 
 export default class ShoppingCart{
@@ -75,5 +75,5 @@ export default class ShoppingCart{
         
         });
         setLocalStorage(this.key, newCartList);  
-    }
+    }  
 }

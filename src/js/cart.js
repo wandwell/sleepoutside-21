@@ -14,9 +14,12 @@ cart.renderCartContents();
 //To add eventlistener to removeFromCart
 document.querySelectorAll('.removeFromCart').forEach(element => {
   element.addEventListener('click', (event) => {
-    const itemId = event.target.getAttribute('data-id');
+    const itemId = parseInt(event.target.getAttribute('data-id'),10);
     cart.removeFromCart(itemId);
     cart.renderCartContents();
+    // Dispatch the cartUpdated event
+    const event = new Event('cartUpdated');
+    window.dispatchEvent(event);
   });
 });
 
@@ -26,5 +29,13 @@ document
   .addEventListener('click', function () {
     setLocalStorage('so-cart', []);
     cart.renderCartContents();
-    displayCartCount();
+    // Dispatch the cartUpdated event
+    const event = new Event('cartUpdated');
+    window.dispatchEvent(event);
   });
+
+ // Listen for cart updates
+  document.addEventListener('DOMContentLoaded', () => {
+    displayCartCount(); 
+  });
+

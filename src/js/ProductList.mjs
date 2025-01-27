@@ -41,7 +41,6 @@ export default class ProductListing {
         loadTitle(this.category);
         const sortOptions = document.getElementById('sortOptions');
         sortOptions.addEventListener('change', this.handleSortChange.bind(this));
-
     }
 
     renderList(list) {
