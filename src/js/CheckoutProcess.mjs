@@ -40,7 +40,8 @@ export default class CheckoutProcess {
 
   init() {
     this.list = getLocalStorage(this.key);
-    this.calculateItemSummary();
+      this.calculateItemSummary();
+      this.calculateOrderTotal();
   }
 
   // calculate and display the total amount of the items in the cart, and the number of items.
@@ -78,7 +79,8 @@ export default class CheckoutProcess {
       parseFloat(this.shipping) +
       parseFloat(this.tax)
     ).toFixed(2);
-    this.displayOrderTotals();
+      this.displayOrderTotals();
+      
   }
 
   displayOrderTotals() {
