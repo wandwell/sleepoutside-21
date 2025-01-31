@@ -58,15 +58,19 @@ export default class ProductDetails {
         item.Quantity++;
       }
     });
-    if (productExists == false) {
+    if (!productExists) {
       //add current product to cart
       this.product.Quantity = 1;
       cartItems.push(this.product);
-      //save the updated cart items array into LocalStorage
     }
+    //save the updated cart items array into LocalStorage
     setLocalStorage("so-cart", cartItems);
+    
     // Provide feedback to the user
-    //alert(`${this.product.name} has been added to your cart.`);
+    // alert(`${this.product.name} has been added to your cart.`);
+    if (window.confirm(`${this.product.Name} has been added to your cart.`)) {
+      window.location.href = "/cart/index.html";
+    }
   }
 
   //generate the HTML to display our product
