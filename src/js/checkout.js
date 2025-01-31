@@ -1,4 +1,4 @@
-import { loadHeaderFooter } from './utils.mjs';
+import { loadHeaderFooter, alertMessage } from "./utils.mjs";
 import CheckoutProcess from './CheckoutProcess.mjs';
 
 loadHeaderFooter();
@@ -15,7 +15,19 @@ document.querySelector('#zip')
 
 document.querySelector("#checkoutSubmit")
     .addEventListener("click", (e) => {
-        e.preventDefault();
+      e.preventDefault();
 
-        myCheckout.checkout();
-});
+      const formElement = document.forms["checkout"]; // Get the checkout form element
+
+      // Form validation
+      if (!formElement.checkValidity()) {
+        formElement.reportValidity(); // Display error message
+
+        // Custom alert message
+        alertMessage("Please fill in all fields correctly.", true);
+
+        return; // Prevent submission if validation fails
+      }
+
+      myCheckout.checkout();
+    });

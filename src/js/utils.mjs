@@ -115,3 +115,14 @@ export async function loadHeaderFooter() {
    badge.textContent = count;
  }
  
+
+ export function alertMessage(message, scroll = true) {
+   const alert = document.createElement("div");
+   alert.classList.add("alert");
+   alert.textContent = message;
+
+   document.querySelector("main").prepend(alert);
+   
+   if (scroll) window.scrollTo(0, 0);
+ }
+

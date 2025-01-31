@@ -40,8 +40,8 @@ export default class CheckoutProcess {
 
   init() {
     this.list = getLocalStorage(this.key);
-      this.calculateItemSummary();
-      this.calculateOrderTotal();
+    this.calculateItemSummary();
+    this.calculateOrderTotal();
   }
 
   // calculate and display the total amount of the items in the cart, and the number of items.
@@ -79,8 +79,7 @@ export default class CheckoutProcess {
       parseFloat(this.shipping) +
       parseFloat(this.tax)
     ).toFixed(2);
-      this.displayOrderTotals();
-      
+    this.displayOrderTotals();
   }
 
   displayOrderTotals() {
@@ -97,19 +96,32 @@ export default class CheckoutProcess {
 
   async checkout() {
     const formElement = document.forms["checkout"];
-
     const json = formDataToJSON(formElement);
+
     json.orderDate = new Date();
     json.orderTotal = this.orderTotal;
     json.tax = this.tax;
     json.shipping = this.shipping;
     json.items = packageItems(this.list);
-    console.log(json);
+
     try {
       const res = await services.checkout(json);
-      console.log(res);
+
+      // If an error occurs on the server, throw a clear message
+      if (!res.ok) {
+        const errorResponse = await res.json(); // The JSON error message returned from the server
+        throw new Error(
+          errorResponse.message ||
+            "An error occurred while processing the order.",
+        );
+      }
+
+      console.log("Order successful:", res);
+      // After the order is successful, handle success page or notification
+      window.location.href = "success.html"; // Redirect to success page
     } catch (err) {
-      console.log(err);
+      console.error("Error occurred while processing the order:", err);
+      this.displayErrorMessage(err.message);
     }
   }
 }

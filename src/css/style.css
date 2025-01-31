@@ -276,6 +276,22 @@ button {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
+/* Alert message */
+.alert {
+  background-color: #4caf50;
+  color: white;
+  padding: 20px;
+  margin: 15px 0;
+  border-radius: 5px;
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.alert + .alert {
+  margin-top: 10px;
+}
+
 @media screen and (min-width: 500px) {
   body {
     max-width: 1080px;

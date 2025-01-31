@@ -1,4 +1,4 @@
-import { getLocalStorage, setLocalStorage } from "./utils.mjs";
+import { getLocalStorage, setLocalStorage, alertMessage } from "./utils.mjs";
 
 //create template for html
 function productDetailsTemplate(product) {
@@ -65,12 +65,14 @@ export default class ProductDetails {
     }
     //save the updated cart items array into LocalStorage
     setLocalStorage("so-cart", cartItems);
-    
+
     // Provide feedback to the user
-    // alert(`${this.product.name} has been added to your cart.`);
-    if (window.confirm(`${this.product.Name} has been added to your cart.`)) {
+    alertMessage(`${this.product.Name} has been added to your cart.`, true);
+
+    // Redirect the user to the cart page after a brief delay to allow message display
+    setTimeout(() => {
       window.location.href = "/cart/index.html";
-    }
+    }, 1500); // Delay for 1.5 seconds (adjustable)
   }
 
   //generate the HTML to display our product
