@@ -170,7 +170,7 @@ button {
   display: block;
   margin-left: auto;
   margin-right: auto;
-  max-width: 100%; /* 이미지가 부모의 크기에 맞게 크기 조정 */
+  max-width: 100%;
 }
 
 .card__brand {
