@@ -47,11 +47,7 @@ export function convertToText(response) {
 }
 
 export function renderWithTemplate(template, parent, data, callback) {
-  // Clear any existing content in the parent element
-  parent.innerHTML = ""; // Clear existing content if needed
-  // Append the template content to the parent element
-  parent.appendChild(template); // Append the actual content of the template
-
+  parent.appendChild(template);
   // If a callback and data are provided, execute the callback with the data
   if (callback && data) {
     callback(data);
@@ -68,8 +64,8 @@ export async function loadTemplate(path) {
 export async function loadHeaderFooter() {
   try {
     // Load the header and footer templates
-    const headerTemplate = await loadTemplate("/partials/header.html");
-    const footerTemplate = await loadTemplate("/partials/footer.html");
+    const headerTemplate = await loadTemplate("../public/partials/header.html");
+    const footerTemplate = await loadTemplate("../public/partials/footer.html");
 
     // Get the header and footer elements from the DOM
     const headerElement = document.getElementById("main-header");
@@ -78,7 +74,44 @@ export async function loadHeaderFooter() {
     // Insert the actual content of the templates into the DOM
     renderWithTemplate(headerTemplate.content, headerElement);
     renderWithTemplate(footerTemplate.content, footerElement);
+    displayCartCount();
   } catch (error) {
     console.error("Error loading header and footer:", error);
   }
 }
+
+ //display superscript numbers to the backpack icon
+ export function displayCartCount() {
+  const cartCount = itemsTotalQuantity();
+  updateCartCount(cartCount);
+ }
+
+ function itemsTotalQuantity() {
+   const cartItems = getLocalStorage('so-cart');
+   let totalQuantity = 0;
+   const itemCount = cartItems.reduce((accumulator, item) => {
+     accumulator[item.Id] = (accumulator[item.Id] || 0) + 1; 
+     totalQuantity ++;
+     return accumulator;
+   }, {});
+   return totalQuantity;
+ }
+ 
+ //function to add a superscript number to the backpack icon
+ function updateCartCount(count) {
+   // Select the cart element
+   const cartElement = document.querySelector('.cart');
+ 
+   // Check if a badge already exists
+   // badge = cartElement.querySelector('.cart-count');
+  // if (!badge) {
+     // Create a badge if it doesn't exist
+    let badge = document.createElement('span');
+     badge.classList.add('cart-count');
+     cartElement.appendChild(badge);
+  // }
+ 
+   // Update the badge text with the count
+   badge.textContent = count;
+ }
+ 
