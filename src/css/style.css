@@ -251,6 +251,40 @@ button {
   color: black;
 }
 
+/* Style form*/
+legend {
+  padding: 10px;
+}
+
+label {
+  display: block;
+  font-size: 1rem;
+  margin: .5rem;
+}
+
+input {
+  display: block;
+  width: 90%;
+  margin: 0 auto;
+  padding: .5rem;
+}
+
+.orderSummary{
+  display: flex;
+  flex-direction: column;
+  height: 25rem;
+  justify-content: space-evenly;
+}
+
+form ul{
+  list-style: none;
+  display: contents;
+}
+
+form p{
+  margin-left: 1rem;
+}
+
 @media screen and (min-width: 500px) {
   body {
     max-width: 1080px;

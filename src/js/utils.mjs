@@ -91,7 +91,7 @@ export async function loadHeaderFooter() {
    let totalQuantity = 0;
    const itemCount = cartItems.reduce((accumulator, item) => {
      accumulator[item.Id] = (accumulator[item.Id] || 0) + 1; 
-     totalQuantity ++;
+     totalQuantity = totalQuantity + item.Quantity;
      return accumulator;
    }, {});
    return totalQuantity;

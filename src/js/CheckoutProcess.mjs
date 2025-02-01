@@ -58,12 +58,12 @@ export default class CheckoutProcess {
             let price = item.FinalPrice;
             let subtotal = price * quantity;
 
-            this.itemNum =+ quantity;
-            this.itemTotal =+ subtotal;
+            this.itemNum = this.itemNum + quantity;
+            this.itemTotal = this.itemTotal + subtotal;
         });
 
         itemNumElement.innerText = `${this.itemNum}`;
-        summaryElement.innerText = '$' + this.itemTotal;
+        summaryElement.innerText = '$' + this.itemTotal.toFixed(2);
     }
 
     calculateOrderTotal() {
