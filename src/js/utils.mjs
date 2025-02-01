@@ -91,7 +91,7 @@ export async function loadHeaderFooter() {
    let totalQuantity = 0;
    const itemCount = cartItems.reduce((accumulator, item) => {
      accumulator[item.Id] = (accumulator[item.Id] || 0) + 1; 
-     totalQuantity ++;
+     totalQuantity = totalQuantity + item.Quantity;
      return accumulator;
    }, {});
    return totalQuantity;
@@ -115,3 +115,26 @@ export async function loadHeaderFooter() {
    badge.textContent = count;
  }
  
+export function alertMessage(message, scroll = true) {
+  const alert = document.createElement('div');
+  alert.classList.add('alert');
+  // set the contents. You should have a message and an X or something the user can click on to remove
+  alert.innerHTML = `<p>${message}<p><span>X<span>`;
+  
+  alert.addEventListener('click', function(e) {
+      if(e.target.tagname == 'SPAN' ) { 
+        main.removeChild(this);
+      }
+  })
+  const main = document.querySelector('main');
+  main.prepend(alert);
+  // make sure they see the alert by scrolling to the top of the window
+  //we may not always want to do this...so default to scroll=true, but allow it to be passed in and overridden.
+  if(scroll)
+    window.scrollTo(0,0);
+}
+
+export function removeAllAlerts() {
+  const alerts = document.querySelectorAll(".alert");
+  alerts.forEach((alert) => document.querySelector("main").removeChild(alert));
+}

@@ -1,4 +1,4 @@
-import { getLocalStorage, setLocalStorage } from "./utils.mjs";
+import { alertMessage, getLocalStorage, setLocalStorage } from "./utils.mjs";
 
 //create template for html
 function productDetailsTemplate(product) {
@@ -64,6 +64,7 @@ export default class ProductDetails {
       cartItems.push(this.product);
     //save the updated cart items array into LocalStorage
     };
+    alertMessage(`${this.product.NameWithoutBrand} was added to your cart!`);
     setLocalStorage("so-cart", cartItems);
     // Provide feedback to the user
     //alert(`${this.product.name} has been added to your cart.`);
